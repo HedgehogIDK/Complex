@@ -41,36 +41,38 @@ void Complex::set_Image(double image_p) {
 }
 
 Complex Complex::operator+(Complex& obj)const {
-	obj.real = real + obj.real;
-	obj.image = image + obj.image;
+	Complex buffer;
 
-	return obj;
+	buffer.real = real + obj.real;
+	buffer.image = image + obj.image;
+
+	return buffer;
 }
 
 Complex Complex::operator-(Complex& obj)const {
-	obj.real = real - obj.real;
-	obj.image = image - obj.image;
+	Complex buffer;
 
-	return obj;
+	buffer.real = real - obj.real;
+	buffer.image = image - obj.image;
+
+	return buffer;
 }
 
 Complex Complex::operator*(Complex& obj)const {
-	double buffer;
+	Complex buffer;
 
-	buffer = real * obj.real - image * obj.image;
-	obj.image = real * obj.image + image * obj.real;
-	obj.real = buffer;
+	buffer.real = real * obj.real - image * obj.image;
+	buffer.image = real * obj.image + image * obj.real;
 
-	return obj;
+	return buffer;
 }
 
 Complex Complex::operator/(Complex& obj)const {
-	double buffer;
+	Complex buffer;
 	double deno = obj.real * obj.real + obj.image * obj.image;
 
-	buffer = (real * obj.real + image * obj.image) / deno;
-	obj.image = (image * obj.real - real * obj.image) / deno;
-	obj.real = buffer;
+	buffer.real = (real * obj.real + image * obj.image) / deno;
+	buffer.image = (image * obj.real - real * obj.image) / deno;
 
-	return obj;
+	return buffer;
 }
